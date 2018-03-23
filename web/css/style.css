@@ -646,3 +646,73 @@ input:focus{
     border-right: 2px solid rgb(66, 188, 255);
     border-bottom: 2px solid rgb(66, 188, 255);
 }
+
+
+
+.card-content {
+    margin: 1em !important;
+}
+#calendarTitle {
+    text-align: center !important;
+}
+
+#calendarTitle a:hover {
+    background-color: transparent;
+    color: #06C1E3;
+}
+#calendarContainer, #todaysEvents {
+    text-align: center;
+}
+#calendarInnerContainer {
+    display: inline-block;
+    margin: auto;
+    font-size: 15px;
+    color: #fff;
+}
+#weekRowHeader {
+    font-weight: bold;
+    display: block;
+}
+#weekRowHeader .day, .weekRow .day {
+    display: table;
+    float: left;
+    width: 53px;
+    height: 38px;
+}
+
+
+.dayInner {
+    text-align: center;
+    vertical-align: middle;
+    margin: 1px;
+}
+.today {
+    font-weight: bold;
+    background-color: #454545;
+    color: #fff !important;
+    -webkit-border-radius: 5px !important;
+    -moz-border-radius: 5px !important;
+    border-radius: 5px !important;
+    border-radius: 40px !important;
+    padding: 10px;
+}
+
+a.monthSwitch {
+  margin: 0 1%;
+  display: inline-block;
+  text-decoration: none;
+  color: white;
+  font-size: 20px;
+}
+
+
+span.year {
+  color: white;
+  font-size: 32px;
+}
+
+span.month {
+  color: white;
+  font-weight: bold;
+  font-size: 32px;
+}

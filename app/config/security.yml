@@ -16,9 +16,16 @@ security:
             pattern: ^/
             form_login:
                 provider: fos_userbundle
-                csrf_token_generator: security.csrf.token_manager # Use form.csrf_provider instead for Symfony <2.4
+                csrf_token_generator: security.csrf.token_manager
+                default_target_path:   https://codereviewvideos.com/course/getting-started-with-fosuserbundle/video/how-to-redirect-a-user-after-login-or-registration
+                always_use_default_target_path: true
             logout:       true
             anonymous:    true
+        dev:
+            pattern:  ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+
+
 
     access_control:
         - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
