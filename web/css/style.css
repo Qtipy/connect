@@ -152,7 +152,7 @@ h3 {
 }
 
 .range-slider {
-  width: 300px;
+  width: 390px;
   margin: auto;
   text-align: center;
   position: relative;
@@ -172,7 +172,7 @@ input[type=range] {
 
 input[type=range]::-webkit-slider-runnable-track {
   width: 100%;
-  height: 15px;
+  height: 10px;
   cursor: pointer;
   animate: 0.2s;
   background: lightgrey;
@@ -198,7 +198,7 @@ input[type=range]::-webkit-slider-thumb {
   background: #fff;
   cursor: pointer;
   -webkit-appearance: none;
-  margin-top: -3px;
+  margin-top: -7px;
 }
 input[type=range]::-moz-range-track {
   width: 100%;
@@ -239,13 +239,16 @@ input[type=range]::-ms-fill-upper {
 .restrict-block {
 	margin-left: 40px;
 	width: calc(70% - 40px);
-	background-color: grey;
+	background-color: #f8f8f8;
       padding: 20px 0px;
 	}
 
 .period {
-	display: flex;
-	
+	text-align: center;
+    width: 300px;
+    margin: auto;
+    display: flex;
+    justify-content: center;
 }
 
 .rappel-block .cours {
@@ -387,6 +390,7 @@ nav {
 	flex-wrap: wrap;
 	justify-content: center;
 	text-align: center;
+  margin-bottom: 20px;
 }
 
 .note-right-block .top-note .note{
@@ -416,6 +420,22 @@ nav {
 .note-right-block .bottom-note .note-block:first-child .note{
 	font-size: 45px;
     line-height: 27px;
+}
+
+
+
+.note-block img{
+  width: 20%;
+  display: inline-block;
+}
+
+.note-block {
+  width: 50%;
+}
+      
+
+.note-block .note-matiere{
+  display: inline-block;
 }
 
 .note-left-block {
@@ -716,3 +736,5 @@ span.month {
   font-weight: bold;
   font-size: 32px;
 }
+
+
