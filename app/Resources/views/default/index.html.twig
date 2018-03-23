@@ -5,7 +5,7 @@
     <div class="nav-wrapper container connect-page-menu">
     <div class="logo-menu">Materialize</div>
         <div class="need-menu">
-            <a href="http://materializecss.com">OK Djingo, j’ai besoin de toi !</a>
+            <a class="bouton-bot" href="#">OK Djingo, j’ai besoin de toi !</a>
         </div>
       <div class="user-menu"><a href="#">John Doe</a></div>
     </div>
@@ -165,7 +165,17 @@
         </div>
 
     </div>
+    <div class="botToDisplay" style="width: 500px; margin: 0 auto; text-align: center; margin-top: 20px;position:fixed;right: 0;bottom:0px; display:none;">
+
+      <div style="width:80%;height: 500px;background-color:rgba(255, 134, 97, 0.42);position:relative; overflow: hidden;border-radius:45px;padding-top:20px;">
+
+        <input style="width:80%;padding:20px;margin-left:5%;margin-bottom:10px;height:40px;position:absolute; bottom: 0!important; border-radius: 50px;border: none;background-color:rgba(255, 255, 255, 0.4);" id="input" type="text"> <!-- <button id="rec">Speak</button> -->
+        <div id="response" cols="40" rows="20"></div>
+      </div>
+    </div>
 </div>
+
+
 
 
 
@@ -184,3 +194,5 @@
       </div>
   </footer>
 {% endblock %}
+
+

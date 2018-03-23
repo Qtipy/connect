@@ -13,17 +13,127 @@
     <body>
         {% block body %}{% endblock %}
         {% block javascripts %}
+
             <script
                 src="https://code.jquery.com/jquery-3.3.1.min.js"
                 integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
                 crossorigin="anonymous">
         </script>
+
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.4/TweenMax.min.js"></script>
 
         <script src='https://static.codepen.io/assets/common/stopExecutionOnTimeout-b2a7b3fe212eaa732349046d8416e00a9dec26eb7fd347590fbced3ab38af52e.js'></script>
 
         <script src="js/main.js"></script>
+
+            <script>
+                $('.bouton-bot').click(function(){
+                    var bot = $(this).find('botToDisplay').css("display","block");
+                    alert(bot);
+                });
+            </script>
+
+            <script type="text/javascript">
+
+                var accessToken = "f4b9d3dc60894eedbfed8ba3fa8c8c91";
+                var baseUrl = "https://api.api.ai/v1/";
+
+                $(document).ready(function() {
+                    $("#input").keypress(function(event) {
+                        if (event.which == 13) {
+                            event.preventDefault();
+                            send();
+                        }
+                    });
+                    $("#rec").click(function(event) {
+                        switchRecognition();
+                    });
+                });
+
+                var recognition;
+
+                function startRecognition() {
+                    recognition = new webkitSpeechRecognition();
+                    recognition.onstart = function(event) {
+                        updateRec();
+                    };
+                    recognition.onresult = function(event) {
+                        var text = "";
+                        for (var i = event.resultIndex; i < event.results.length; ++i) {
+                            text += event.results[i][0].transcript;
+                        }
+                        setInput(text);
+                        stopRecognition();
+                    };
+                    recognition.onend = function() {
+                        stopRecognition();
+                    };
+                    recognition.lang = "en-US";
+                    recognition.start();
+                }
+
+                function stopRecognition() {
+                    if (recognition) {
+                        recognition.stop();
+                        recognition = null;
+                    }
+                    updateRec();
+                }
+
+                function switchRecognition() {
+                    if (recognition) {
+                        stopRecognition();
+                    } else {
+                        startRecognition();
+                    }
+                }
+
+                function setInput(text) {
+                    $("#input").val(text);
+                    send();
+                }
+
+                function updateRec() {
+                    $("#rec").text(recognition ? "Stop" : "Speak");
+                }
+
+                function send() {
+                    var text = $("#input").val();
+                    $.ajax({
+                        type: "POST",
+                        url: baseUrl + "query?v=20150910",
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        headers: {
+                            "Authorization": "Bearer " + accessToken
+                        },
+                        data: JSON.stringify({ query: text, lang: "en", sessionId: "somerandomthing" }),
+
+
+                        success: function(data) {
+                            console.log(data);
+                            // const ask = $("#input").val();
+                            const answer = data.result.fulfillment.speech;
+                            const askdiv = "<div style='max-width:50%;padding:10px;background-color:#008CFF;border-radius:50px;clear:left;float:right;margin-right:5px;margin-bottom:20px;' >"+$("#input").val()+"</div>";
+                            const answerdiv = "<div style='clear:right;float:left;padding:10px;border-radius:50px;background-color:#ffffff;margin-left:20px;margin-bottom:5px;'>"+answer+"</div>";
+
+                            $("#response").append(askdiv);
+                            $("#response").append(answerdiv);
+
+                        },
+                        error: function() {
+                            setResponse("Internal Server Error");
+                        }
+                    });
+                    // setResponse("Loading...");
+                }
+
+                function setResponse(val) {
+                    $("#response").text(val);
+                }
+
+            </script>
 
         {% endblock %}
     </body>
