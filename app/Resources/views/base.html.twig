@@ -30,7 +30,6 @@
             <script>
                 $('.bouton-bot').click(function(){
                     $('.botToDisplay').css("display","block");
-                    alert(bot);
                 });
             </script>
 
@@ -91,7 +90,7 @@
 
                 function setInput(text) {
                     $("#input").val(text);
-                    send();
+//                    send();
                 }
 
                 function updateRec() {
@@ -121,12 +120,17 @@
                             $("#response").append(askdiv);
                             $("#response").append(answerdiv);
 
+                            setInput('');
+
+                            $("#response").scrollTop($("#response")[0].scrollHeight);
+
+
                         },
                         error: function() {
                             setResponse("Internal Server Error");
                         }
                     });
-                    // setResponse("Loading...");
+//                     setResponse("Loading...");
                 }
 
                 function setResponse(val) {
